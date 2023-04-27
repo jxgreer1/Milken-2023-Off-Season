@@ -14,54 +14,58 @@ public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new ExampleSubsystem. */
 
   private final Motor motor = Motor.getInstance();
-  private final PIDController bottomIntake;
-  private final PIDController topIntake;
-
-  private DigitalInput bottomSwitch;
-  private DigitalInput topSwitch;
-
-  private TalonFX topLeft = motor.motor(
-      CANID.topLeftIntakeCANID,
-      MKINTAKE.intakeNeutralMode,
-      0,
-      MKINTAKE.pidf,
-      MKINTAKE.bottomLeftInverted,
-      "rio");
-  private TalonFX topRight = motor.motor(
-      CANID.topRightIntakeCANID,
-      MKINTAKE.intakeNeutralMode,
-      0,
-      MKINTAKE.pidf,
-      MKINTAKE.bottomLeftInverted,
-      "rio");
-  private TalonFX toprollers =  = motor.motor(
-    CANID.bottomLeftIntakeCANID,
-    MKINTAKE.intakeNeutralMode,
-    0,
-    MKINTAKE.pidf,
-    MKINTAKE.bottomLeftInverted,
-    "rio");
-  private TalonFX bottomrollers =  = motor.motor(
-    CANID.bottomLeftIntakeCANID,
-    MKINTAKE.intakeNeutralMode,
-    0,
-    MKINTAKE.pidf,
-    MKINTAKE.bottomLeftInverted,
-    "rio");
-  private TalonFX bottomLeft = motor.motor(
+  private final TalonFX bottomLeft =
+  motor.motor(
       CANID.bottomLeftIntakeCANID,
       MKINTAKE.intakeNeutralMode,
       0,
       MKINTAKE.pidf,
       MKINTAKE.bottomLeftInverted,
       "rio");
-  private TalonFX bottomRight = motor.motor(
+      private final TalonFX bottomRight =
+  motor.motor(
       CANID.bottomRightIntakeCANID,
       MKINTAKE.intakeNeutralMode,
       0,
       MKINTAKE.pidf,
-      MKINTAKE.bottomLeftInverted,
+      MKINTAKE.bottomRightInverted,
       "rio");
+      private final TalonFX topLeft =
+  motor.motor(
+      CANID.topLeftIntakeCANID,
+      MKINTAKE.intakeNeutralMode,
+      0,
+      MKINTAKE.pidf,
+      MKINTAKE.topLeftInverted,
+      "rio");
+      private final TalonFX topRight =
+  motor.motor(
+      CANID.topRightIntakeCANID,
+      MKINTAKE.intakeNeutralMode,
+      0,
+      MKINTAKE.pidf,
+      MKINTAKE.topRightInverted,
+      "rio");
+      private final TalonFX toprollers =
+  motor.motor(
+      CANID.toprollersCANID,
+      MKINTAKE.intakeNeutralMode,
+      0,
+      MKINTAKE.pidf,
+      MKINTAKE.topRightInverted,
+      "rio");
+      private final TalonFX bottomrollers =
+  motor.motor(
+      CANID.bottomrollersCANID,
+      MKINTAKE.intakeNeutralMode,
+      0,
+      MKINTAKE.pidf,
+      MKINTAKE.topRightInverted,
+      "rio");
+private final PIDController bottomIntake = new PIDController(MKINTAKE.kP, MKINTAKE.kI, MKINTAKE.kD);
+private final PIDController topIntake = new PIDController(MKINTAKE.kP, MKINTAKE.kI, MKINTAKE.kD);
+private final DigitalInput bottomSwitch = new DigitalInput(9);
+private final DigitalInput topSwitch = new DigitalInput(6);
 
   /**
    * Example command factory method.
