@@ -31,9 +31,9 @@ public class RobotContainer {
   private void configureBindings() {
     swerve.setDefaultCommand(
       swerve.teleopDriveCmd(
-        () -> -driver.getLeftY(),
-        () -> -driver.getLeftX(),
-        () -> driver.getRightX(),
+        () -> driver.getLeftY(),
+        () -> driver.getLeftX(),
+        () -> -driver.getRightX(),
         driver.leftBumper()::getAsBoolean,
         
         () -> true // openLoop

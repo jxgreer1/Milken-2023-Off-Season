@@ -38,6 +38,7 @@ import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Constants.MKPIGEON;
 import frc.robot.Constants.SwerveK.Mod0;
 import frc.robot.Constants.SwerveK.Mod1;
 import frc.robot.Constants.SwerveK.Mod2;
@@ -50,7 +51,7 @@ public class SwerveSubsystem extends SubsystemBase {
 			new SwerveModule("Rear Left", 2, Mod2.constants),
 			new SwerveModule("Rear Right", 3, Mod3.constants)
 	};
-	private final Pigeon2 m_pigeon = new Pigeon2(Constants.SwerveK.kPigeonCANID, "rio");
+	private final Pigeon2 m_pigeon = new Pigeon2(Constants.MKPIGEON.kPigeonCANID, "rio");
 
 	private final ProfiledPIDController thetaController = new ProfiledPIDController(
 			kPThetaController, 0, 0,
@@ -248,7 +249,7 @@ public class SwerveSubsystem extends SubsystemBase {
 	}
 
 	public void zeroGyro() {
-		m_pigeon.setYaw(0);
+		m_pigeon.setYaw(0 + MKPIGEON.offset);
 
 	}
 
@@ -259,7 +260,7 @@ public class SwerveSubsystem extends SubsystemBase {
 	}
 
 	private double getGyroYaw() {
-		return m_pigeon.getYaw() - 180;
+		return m_pigeon.getYaw() - 180.0 + MKPIGEON.offset;
 	}
 
 	// Side to side
@@ -269,7 +270,7 @@ public class SwerveSubsystem extends SubsystemBase {
 	}
 
 	public void resetPose(Pose2d pose) {
-		m_pigeon.setYaw(pose.getRotation().getDegrees());
+		m_pigeon.setYaw(pose.getRotation().getDegrees() + MKPIGEON.offset);
 		resetEstimatorPose(pose); // resets poseEstimator
 		resetOdometryPose(pose); // sets odometry to poseEstimator
 	}
@@ -387,7 +388,7 @@ public class SwerveSubsystem extends SubsystemBase {
 			// controller joystick
 			// Double currentAngle = -1 *
 			// Robot.controller.getRawAxis(Constants.LEFT_VERTICAL_JOYSTICK_AXIS) * 45;
-			double currentAngle = m_pigeon.getPitch();
+			double currentAngle = m_pigeon.getPitch() + MKPIGEON.offset;
 
 			double error = 0 - currentAngle;
 			double power = -Math.min(Constants.SwerveK.kDriveKP * error, 1);
@@ -424,7 +425,7 @@ public class SwerveSubsystem extends SubsystemBase {
 	public void simulationPeriodic() {
 		ChassisSpeeds chassisSpeed = kKinematics.toChassisSpeeds(getModuleStates());
 		m_simYaw += chassisSpeed.omegaRadiansPerSecond * 0.02;
-		m_pigeon.getSimCollection().setRawHeading(-Units.radiansToDegrees(m_simYaw));
+		m_pigeon.getSimCollection().setRawHeading(-Units.radiansToDegrees(m_simYaw) + MKPIGEON.offset);
 
 		for (var module : m_modules) {
 			module.simulationPeriodic();

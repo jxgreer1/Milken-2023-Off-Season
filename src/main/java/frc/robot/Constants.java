@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.NeutralMode;
+import com.ctre.phoenix.sensors.AbsoluteSensorRange;
 import com.pathplanner.lib.auto.PIDConstants;
 
 import edu.wpi.first.math.Matrix;
@@ -18,8 +19,79 @@ public final class Constants {
         public static final double stickDeadband = 0.1;
         public static final String canbus = "rio";
 
+        public static final class MKPIGEON {
+                public static final double offset = 0;// 180.0;
+                public static final int kPigeonCANID = 30;
+        }
+
+        public static class CANID {
+                // drive motors
+                public static final int topDriveLeftCANID = 5; // 5
+                public static final int topDriveRightCANID = 7;
+                public static final int bottomDriveLeftCANID = 9;
+                public static final int bottomDriveRightCANID = 3; // 3
+
+                // turn motors
+                public static final int topTurnLeftCANID = 6; // 6
+                public static final int topTurnRightCANID = 8;
+                public static final int bottomTurnLeftCANID = 1;
+                public static final int bottomTurnRightCANID = 4; // 4
+
+                // cancoder
+                public static final int topTurnLeftCANCoderCANID = 18; // 18
+                public static final int topTurnRightCANCoderCANID = 17;
+                public static final int bottomTurnLeftCANCoderCANID = 15; // BAD
+                public static final int bottomTurnRightCANCoderCANID = 16; // 16
+
+                // intakes
+                public static final int topLeftIntakeCANID = 57;
+                public static final int topRightIntakeCANID = 62;
+                public static final int bottomLeftIntakeCANID = 60;
+                public static final int bottomRightIntakeCANID = 61;
+                public static final int toprollersCANID = 59;
+                public static final int bottomrollersCANID = 58;
+
+                // revh ph
+
+                public static final int revpdhCANID = 23; // MUST MAKE SURE IT IS ON RIO NOT CANIVORE
+
+                public static final int pigeonCANID = 30;
+        }
+
+        public static class MKINTAKE {
+                public static final NeutralMode rollerNeutralMode = NeutralMode.Coast;
+                public static final NeutralMode intakeNeutralMode = NeutralMode.Brake;
+
+                public static final double kP = 0.00002;
+                public static final double kI = 0.0000001;
+                public static final double kD = 0.0000;
+                public static final double kF = 0;
+
+                public static final double[] pidf = { kP, kI, kD, kF };
+
+                public static final boolean topLeftInverted = true;
+                public static final boolean topRightInverted = false;
+                public static final boolean bottomLeftInverted = true;
+                public static final boolean bottomRightInverted = false;
+
+                public static final double rollerPercentSpeed = .7;
+                public static final double intakePercentSpeed = .7;
+
+                public static final double greerRatio = 20.0 / 18.0 / 45.0;
+
+                public static final double topOutNative = 0;
+                public static final double bottomOutNative = 0;
+        }
+
         public static final class SwerveK {
                 public static final String DB_TAB_NAME = "SwerveSubsys";
+
+                public static final AbsoluteSensorRange absRange = AbsoluteSensorRange.Unsigned_0_to_360;
+
+                public static final int velocityMeasAmount = 26;
+                public static final int statusOneMeas = 20;
+                public static final int statusTwoMeas = 20;
+                public static final double voltComp = 11;
 
                 /**
                  * Set to true to use external CANcoder for inital zero and switch to internal
@@ -29,7 +101,6 @@ public final class Constants {
                  */
                 public static final boolean kUseInternalEncoder = false;
 
-                public static final int kPigeonCANID = 30;
                 public static final boolean kInvertGyro = false; // Always ensure Gyro is CCW+ CW-
 
                 public static final COTSFalconSwerveConstants kSwerveModule = COTSFalconSwerveConstants
@@ -87,7 +158,7 @@ public final class Constants {
                 public static final double kAngleKF = kSwerveModule.angleKF;
 
                 /* Drive Motor PID Values */
-                public static final double kDriveKP = 0.10;
+                public static final double kDriveKP = 0.1;
                 public static final double kDriveKI = 0.0;
                 public static final double kDriveKD = 0.0;
                 public static final double kDriveKF = 0.0;

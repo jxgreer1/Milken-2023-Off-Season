@@ -1,0 +1,33 @@
+    PIGEON   |   CAN ID is 30
+This device is on the roboRIO's native CAN Bus
+Description:Pigeon is boot-caling to properly bias accel and gyro.  Do not move Pigeon.
+Pigeon State:Initializing
+Last CAL mode:BootTareGyroAccel
+Last CAL err:0
+
+TempC:36.4727
+UpTime:255 seconds
+noMotionBiasCount:12
+tempCompensationCount:0
+Temperature Calibration exists.  This particular IMU is temperature insensitive.
+
+Yaw:-87.5748 '
+Pitch:-1.01074 '
+Roll:0 '
+
+Compass (continuous):   -0.043 '
+Compass (bounded): 359.956 '
+Quaternion (w,x,y,z): 0.854352, -0.0481016, -0.0109877, -0.513979
+
+Gyro: (   0.00,    0.00,    0.00) dps
+Accum Gyro: (-0.922852, -1.53809, 27.6855) deg
+Mag: (   0.00,    0.00,    0.00) units
+Mag Strength:   0.00uT
+Accel: (1207.00, -1195.00, 16807.00) units
+
+FRC Locked:1
+
+"Blink / Clear Faults" clears sticky faults.
+
+Build:Jan 12 2023 21:37:34
+Press "Refresh" to close.
