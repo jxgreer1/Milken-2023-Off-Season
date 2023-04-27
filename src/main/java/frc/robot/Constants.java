@@ -158,7 +158,7 @@ public final class Constants {
                 public static final double kAngleKF = kSwerveModule.angleKF;
 
                 /* Drive Motor PID Values */
-                public static final double kDriveKP = 0.1;
+                public static final double kDriveKP = 0.05;
                 public static final double kDriveKI = 0.0;
                 public static final double kDriveKD = 0.0;
                 public static final double kDriveKF = 0.0;
@@ -182,9 +182,9 @@ public final class Constants {
                 );
 
                 /* Swerve Profiling Values */
-                public static final double kMaxVelocityMps = 8; // TODO: This must be tuned to specific robot //4.5
+                public static final double kMaxVelocityMps = 4.5; // TODO: This must be tuned to specific robot //4.5
                 /* Radians per Second */
-                public static final double kMaxAngularVelocityRadps = 14; // TODO: This must be tuned to specific robot
+                public static final double kMaxAngularVelocityRadps = 11.5; // TODO: This must be tuned to specific robot
                                                                           // //11.5
 
                 /* Neutral Modes */
